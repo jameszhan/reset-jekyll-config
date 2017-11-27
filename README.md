@@ -22,7 +22,20 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+REPLACE Gemfile
+
+```ruby
+gem "github-pages", group: :jekyll_plugins
+```
+
+TO
+
+```ruby
+group :jekyll_plugins do
+  gem 'github-pages'
+  gem 'reset-jekyll-config', '~> 0.1'
+end
+```
 
 ## Development
 

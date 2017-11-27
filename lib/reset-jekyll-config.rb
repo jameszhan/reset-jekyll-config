@@ -5,13 +5,13 @@ require "jekyll"
 
 module ResetJekyllConfig
 
-  DEFAULTS = Jekyll::Configuration.DEFAULTS
+  DEFAULTS = Jekyll::Configuration::DEFAULTS
 
   class << self
 
     def reset(site)
-      config = site.config
-      site.config = Utils.deep_merge_hashes(DEFAULTS, config).fix_common_issues.add_default_collections
+      site.config["plugins_dir"] = "_plugins"
+      site.safe = false
     end
 
   end
@@ -19,7 +19,5 @@ module ResetJekyllConfig
 end
 
 Jekyll::Hooks.register :site, :after_reset do |site|
-  ResetJekyllConfig.set(site)
+  ResetJekyllConfig.reset(site)
 end
-
-puts "ResetJekyllConfig Loaded (#{__FILE__})."
